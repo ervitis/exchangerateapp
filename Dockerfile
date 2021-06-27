@@ -1,16 +1,21 @@
-ENV APP_NAME exchangerateapp
+ARG API_KEY
 
 FROM golang:1.16-buster as builder
 
 WORKDIR /output
 COPY . .
 
-RUN go mod download && CGO_ENABLED=0 GOOS=linux GOARCH=amd54 go build -a -o ${APP_NAME} .
+RUN go mod download && CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -gcflags="all=-N -l" -a -o exchangerateapp .
 
-FROM gcr.io/distroless/static:nonroot
+FROM debian:buster
 
 WORKDIR /app
-COPY --from=builder /output/${APP_NAME} .
-USER 1001:1001
+COPY --from=builder /output/exchangerateapp .
+COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 
-ENTRYPOINT ["/app/${APP_NAME}"]
+ARG API_KEY
+ENV API_KEY ${API_KEY}
+
+EXPOSE 8080
+
+ENTRYPOINT ["/app/exchangerateapp"]
