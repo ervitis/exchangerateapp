@@ -77,12 +77,6 @@ func (o *GetByDateReader) ReadResponse(response runtime.ClientResponse, consumer
 			return nil, err
 		}
 		return result, nil
-	case 301:
-		result := NewGetByDateMovedPermanently()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return nil, result
 	case 302:
 		result := NewGetByDateFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -97,36 +91,6 @@ func (o *GetByDateReader) ReadResponse(response runtime.ClientResponse, consumer
 		return nil, result
 	case 404:
 		result := NewGetByDateNotFound()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return nil, result
-	case 501:
-		result := NewGetByDateNotImplemented()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return nil, result
-	case 502:
-		result := NewGetByDateBadGateway()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return nil, result
-	case 503:
-		result := NewGetByDateServiceUnavailable()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return nil, result
-	case 504:
-		result := NewGetByDateGatewayTimeout()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return nil, result
-	case 505:
-		result := NewGetByDateHTTPVersionNotSupported()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -146,13 +110,24 @@ func NewGetByDateSwitchingProtocols() *GetByDateSwitchingProtocols {
 No API Key was specified or an invalid API Key was specified.
 */
 type GetByDateSwitchingProtocols struct {
+	Payload *models.Error
 }
 
 func (o *GetByDateSwitchingProtocols) Error() string {
-	return fmt.Sprintf("[GET /{date}][%d] getByDateSwitchingProtocols ", 101)
+	return fmt.Sprintf("[GET /{date}][%d] getByDateSwitchingProtocols  %+v", 101, o.Payload)
+}
+func (o *GetByDateSwitchingProtocols) GetPayload() *models.Error {
+	return o.Payload
 }
 
 func (o *GetByDateSwitchingProtocols) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -167,13 +142,24 @@ func NewGetByDateProcessing() *GetByDateProcessing {
 The account this API request is coming from is inactive.
 */
 type GetByDateProcessing struct {
+	Payload *models.Error
 }
 
 func (o *GetByDateProcessing) Error() string {
-	return fmt.Sprintf("[GET /{date}][%d] getByDateProcessing ", 102)
+	return fmt.Sprintf("[GET /{date}][%d] getByDateProcessing  %+v", 102, o.Payload)
+}
+func (o *GetByDateProcessing) GetPayload() *models.Error {
+	return o.Payload
 }
 
 func (o *GetByDateProcessing) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -188,13 +174,24 @@ func NewGetByDateCheckpoint() *GetByDateCheckpoint {
 The requested API endpoint does not exist.
 */
 type GetByDateCheckpoint struct {
+	Payload *models.Error
 }
 
 func (o *GetByDateCheckpoint) Error() string {
-	return fmt.Sprintf("[GET /{date}][%d] getByDateCheckpoint ", 103)
+	return fmt.Sprintf("[GET /{date}][%d] getByDateCheckpoint  %+v", 103, o.Payload)
+}
+func (o *GetByDateCheckpoint) GetPayload() *models.Error {
+	return o.Payload
 }
 
 func (o *GetByDateCheckpoint) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -209,13 +206,24 @@ func NewGetByDateStatus104() *GetByDateStatus104 {
 The maximum allowed API amount of monthly API requests has been reached.
 */
 type GetByDateStatus104 struct {
+	Payload *models.Error
 }
 
 func (o *GetByDateStatus104) Error() string {
-	return fmt.Sprintf("[GET /{date}][%d] getByDateStatus104 ", 104)
+	return fmt.Sprintf("[GET /{date}][%d] getByDateStatus104  %+v", 104, o.Payload)
+}
+func (o *GetByDateStatus104) GetPayload() *models.Error {
+	return o.Payload
 }
 
 func (o *GetByDateStatus104) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -230,13 +238,24 @@ func NewGetByDateStatus105() *GetByDateStatus105 {
 The current subscription plan does not support this API endpoint.
 */
 type GetByDateStatus105 struct {
+	Payload *models.Error
 }
 
 func (o *GetByDateStatus105) Error() string {
-	return fmt.Sprintf("[GET /{date}][%d] getByDateStatus105 ", 105)
+	return fmt.Sprintf("[GET /{date}][%d] getByDateStatus105  %+v", 105, o.Payload)
+}
+func (o *GetByDateStatus105) GetPayload() *models.Error {
+	return o.Payload
 }
 
 func (o *GetByDateStatus105) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -251,13 +270,24 @@ func NewGetByDateStatus106() *GetByDateStatus106 {
 The current request did not return any results.
 */
 type GetByDateStatus106 struct {
+	Payload *models.Error
 }
 
 func (o *GetByDateStatus106) Error() string {
-	return fmt.Sprintf("[GET /{date}][%d] getByDateStatus106 ", 106)
+	return fmt.Sprintf("[GET /{date}][%d] getByDateStatus106  %+v", 106, o.Payload)
+}
+func (o *GetByDateStatus106) GetPayload() *models.Error {
+	return o.Payload
 }
 
 func (o *GetByDateStatus106) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -304,13 +334,24 @@ func NewGetByDateCreated() *GetByDateCreated {
 An invalid base currency has been entered.
 */
 type GetByDateCreated struct {
+	Payload *models.Error
 }
 
 func (o *GetByDateCreated) Error() string {
-	return fmt.Sprintf("[GET /{date}][%d] getByDateCreated ", 201)
+	return fmt.Sprintf("[GET /{date}][%d] getByDateCreated  %+v", 201, o.Payload)
+}
+func (o *GetByDateCreated) GetPayload() *models.Error {
+	return o.Payload
 }
 
 func (o *GetByDateCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -325,34 +366,24 @@ func NewGetByDateAccepted() *GetByDateAccepted {
 One or more invalid symbols have been specified.
 */
 type GetByDateAccepted struct {
+	Payload *models.Error
 }
 
 func (o *GetByDateAccepted) Error() string {
-	return fmt.Sprintf("[GET /{date}][%d] getByDateAccepted ", 202)
+	return fmt.Sprintf("[GET /{date}][%d] getByDateAccepted  %+v", 202, o.Payload)
+}
+func (o *GetByDateAccepted) GetPayload() *models.Error {
+	return o.Payload
 }
 
 func (o *GetByDateAccepted) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	return nil
-}
+	o.Payload = new(models.Error)
 
-// NewGetByDateMovedPermanently creates a GetByDateMovedPermanently with default headers values
-func NewGetByDateMovedPermanently() *GetByDateMovedPermanently {
-	return &GetByDateMovedPermanently{}
-}
-
-/* GetByDateMovedPermanently describes a response with status code 301, with default header values.
-
-No date has been specified. [historical]
-*/
-type GetByDateMovedPermanently struct {
-}
-
-func (o *GetByDateMovedPermanently) Error() string {
-	return fmt.Sprintf("[GET /{date}][%d] getByDateMovedPermanently ", 301)
-}
-
-func (o *GetByDateMovedPermanently) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -367,13 +398,24 @@ func NewGetByDateFound() *GetByDateFound {
 An invalid date has been specified. [historical, convert]
 */
 type GetByDateFound struct {
+	Payload *models.Error
 }
 
 func (o *GetByDateFound) Error() string {
-	return fmt.Sprintf("[GET /{date}][%d] getByDateFound ", 302)
+	return fmt.Sprintf("[GET /{date}][%d] getByDateFound  %+v", 302, o.Payload)
+}
+func (o *GetByDateFound) GetPayload() *models.Error {
+	return o.Payload
 }
 
 func (o *GetByDateFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -388,13 +430,24 @@ func NewGetByDateForbidden() *GetByDateForbidden {
 No or an invalid amount has been specified. [convert]
 */
 type GetByDateForbidden struct {
+	Payload *models.Error
 }
 
 func (o *GetByDateForbidden) Error() string {
-	return fmt.Sprintf("[GET /{date}][%d] getByDateForbidden ", 403)
+	return fmt.Sprintf("[GET /{date}][%d] getByDateForbidden  %+v", 403, o.Payload)
+}
+func (o *GetByDateForbidden) GetPayload() *models.Error {
+	return o.Payload
 }
 
 func (o *GetByDateForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -409,118 +462,24 @@ func NewGetByDateNotFound() *GetByDateNotFound {
 The requested resource does not exist
 */
 type GetByDateNotFound struct {
+	Payload *models.Error
 }
 
 func (o *GetByDateNotFound) Error() string {
-	return fmt.Sprintf("[GET /{date}][%d] getByDateNotFound ", 404)
+	return fmt.Sprintf("[GET /{date}][%d] getByDateNotFound  %+v", 404, o.Payload)
+}
+func (o *GetByDateNotFound) GetPayload() *models.Error {
+	return o.Payload
 }
 
 func (o *GetByDateNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	return nil
-}
+	o.Payload = new(models.Error)
 
-// NewGetByDateNotImplemented creates a GetByDateNotImplemented with default headers values
-func NewGetByDateNotImplemented() *GetByDateNotImplemented {
-	return &GetByDateNotImplemented{}
-}
-
-/* GetByDateNotImplemented describes a response with status code 501, with default header values.
-
-No or an invalid timeframe has been specified. [timeseries]
-*/
-type GetByDateNotImplemented struct {
-}
-
-func (o *GetByDateNotImplemented) Error() string {
-	return fmt.Sprintf("[GET /{date}][%d] getByDateNotImplemented ", 501)
-}
-
-func (o *GetByDateNotImplemented) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	return nil
-}
-
-// NewGetByDateBadGateway creates a GetByDateBadGateway with default headers values
-func NewGetByDateBadGateway() *GetByDateBadGateway {
-	return &GetByDateBadGateway{}
-}
-
-/* GetByDateBadGateway describes a response with status code 502, with default header values.
-
-No or an invalid "start_date" has been specified. [timeseries, fluctuation]
-*/
-type GetByDateBadGateway struct {
-}
-
-func (o *GetByDateBadGateway) Error() string {
-	return fmt.Sprintf("[GET /{date}][%d] getByDateBadGateway ", 502)
-}
-
-func (o *GetByDateBadGateway) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	return nil
-}
-
-// NewGetByDateServiceUnavailable creates a GetByDateServiceUnavailable with default headers values
-func NewGetByDateServiceUnavailable() *GetByDateServiceUnavailable {
-	return &GetByDateServiceUnavailable{}
-}
-
-/* GetByDateServiceUnavailable describes a response with status code 503, with default header values.
-
-No or an invalid "end_date" has been specified. [timeseries, fluctuation]
-*/
-type GetByDateServiceUnavailable struct {
-}
-
-func (o *GetByDateServiceUnavailable) Error() string {
-	return fmt.Sprintf("[GET /{date}][%d] getByDateServiceUnavailable ", 503)
-}
-
-func (o *GetByDateServiceUnavailable) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	return nil
-}
-
-// NewGetByDateGatewayTimeout creates a GetByDateGatewayTimeout with default headers values
-func NewGetByDateGatewayTimeout() *GetByDateGatewayTimeout {
-	return &GetByDateGatewayTimeout{}
-}
-
-/* GetByDateGatewayTimeout describes a response with status code 504, with default header values.
-
-An invalid timeframe has been specified. [timeseries, fluctuation]
-*/
-type GetByDateGatewayTimeout struct {
-}
-
-func (o *GetByDateGatewayTimeout) Error() string {
-	return fmt.Sprintf("[GET /{date}][%d] getByDateGatewayTimeout ", 504)
-}
-
-func (o *GetByDateGatewayTimeout) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	return nil
-}
-
-// NewGetByDateHTTPVersionNotSupported creates a GetByDateHTTPVersionNotSupported with default headers values
-func NewGetByDateHTTPVersionNotSupported() *GetByDateHTTPVersionNotSupported {
-	return &GetByDateHTTPVersionNotSupported{}
-}
-
-/* GetByDateHTTPVersionNotSupported describes a response with status code 505, with default header values.
-
-The specified timeframe is too long, exceeding 365 days. [timeseries, fluctuation]
-*/
-type GetByDateHTTPVersionNotSupported struct {
-}
-
-func (o *GetByDateHTTPVersionNotSupported) Error() string {
-	return fmt.Sprintf("[GET /{date}][%d] getByDateHttpVersionNotSupported ", 505)
-}
-
-func (o *GetByDateHTTPVersionNotSupported) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

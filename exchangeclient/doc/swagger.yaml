@@ -61,38 +61,48 @@ paths:
             $ref: '#/definitions/Rates'
         404:
           description: The requested resource does not exist
+          schema:
+            $ref: '#/definitions/Error'
         101:
           description: No API Key was specified or an invalid API Key was specified.
+          schema:
+            $ref: '#/definitions/Error'
         103:
           description: The requested API endpoint does not exist.
+          schema:
+            $ref: '#/definitions/Error'
         104:
           description: The maximum allowed API amount of monthly API requests has been reached.
+          schema:
+            $ref: '#/definitions/Error'
         105:
           description: The current subscription plan does not support this API endpoint.
+          schema:
+            $ref: '#/definitions/Error'
         106:
           description: The current request did not return any results.
+          schema:
+            $ref: '#/definitions/Error'
         102:
           description: The account this API request is coming from is inactive.
+          schema:
+            $ref: '#/definitions/Error'
         201:
           description: An invalid base currency has been entered.
+          schema:
+            $ref: '#/definitions/Error'
         202:
           description: One or more invalid symbols have been specified.
-        301:
-          description: No date has been specified. [historical]
+          schema:
+            $ref: '#/definitions/Error'
         302:
           description: An invalid date has been specified. [historical, convert]
+          schema:
+            $ref: '#/definitions/Error'
         403:
           description: No or an invalid amount has been specified. [convert]
-        501:
-          description: No or an invalid timeframe has been specified. [timeseries]
-        502:
-          description: No or an invalid "start_date" has been specified. [timeseries, fluctuation]
-        503:
-          description: No or an invalid "end_date" has been specified. [timeseries, fluctuation]
-        504:
-          description: An invalid timeframe has been specified. [timeseries, fluctuation]
-        505:
-          description: The specified timeframe is too long, exceeding 365 days. [timeseries, fluctuation]
+          schema:
+            $ref: '#/definitions/Error'
   /{date}:
     get:
       summary: Get historical rates from a gived date
@@ -133,38 +143,48 @@ paths:
             $ref: '#/definitions/Rates'
         404:
           description: The requested resource does not exist
+          schema:
+            $ref: '#/definitions/Error'
         101:
           description: No API Key was specified or an invalid API Key was specified.
+          schema:
+            $ref: '#/definitions/Error'
         103:
           description: The requested API endpoint does not exist.
+          schema:
+            $ref: '#/definitions/Error'
         104:
           description: The maximum allowed API amount of monthly API requests has been reached.
+          schema:
+            $ref: '#/definitions/Error'
         105:
           description: The current subscription plan does not support this API endpoint.
+          schema:
+            $ref: '#/definitions/Error'
         106:
           description: The current request did not return any results.
+          schema:
+            $ref: '#/definitions/Error'
         102:
           description: The account this API request is coming from is inactive.
+          schema:
+            $ref: '#/definitions/Error'
         201:
           description: An invalid base currency has been entered.
+          schema:
+            $ref: '#/definitions/Error'
         202:
           description: One or more invalid symbols have been specified.
-        301:
-          description: No date has been specified. [historical]
+          schema:
+            $ref: '#/definitions/Error'
         302:
           description: An invalid date has been specified. [historical, convert]
+          schema:
+            $ref: '#/definitions/Error'
         403:
           description: No or an invalid amount has been specified. [convert]
-        501:
-          description: No or an invalid timeframe has been specified. [timeseries]
-        502:
-          description: No or an invalid "start_date" has been specified. [timeseries, fluctuation]
-        503:
-          description: No or an invalid "end_date" has been specified. [timeseries, fluctuation]
-        504:
-          description: An invalid timeframe has been specified. [timeseries, fluctuation]
-        505:
-          description: The specified timeframe is too long, exceeding 365 days. [timeseries, fluctuation]
+          schema:
+            $ref: '#/definitions/Error'
 definitions:
   Rates:
     type: object
@@ -188,3 +208,17 @@ definitions:
         type: object
         additionalProperties:
           type: string
+  Error:
+    type: object
+    properties:
+      success:
+        type: boolean
+      error:
+        type: object
+        properties:
+          code:
+            type: number
+          type:
+            type: string
+          info:
+            type: string

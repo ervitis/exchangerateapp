@@ -77,12 +77,6 @@ func (o *GetLatestReader) ReadResponse(response runtime.ClientResponse, consumer
 			return nil, err
 		}
 		return result, nil
-	case 301:
-		result := NewGetLatestMovedPermanently()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return nil, result
 	case 302:
 		result := NewGetLatestFound()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -97,36 +91,6 @@ func (o *GetLatestReader) ReadResponse(response runtime.ClientResponse, consumer
 		return nil, result
 	case 404:
 		result := NewGetLatestNotFound()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return nil, result
-	case 501:
-		result := NewGetLatestNotImplemented()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return nil, result
-	case 502:
-		result := NewGetLatestBadGateway()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return nil, result
-	case 503:
-		result := NewGetLatestServiceUnavailable()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return nil, result
-	case 504:
-		result := NewGetLatestGatewayTimeout()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return nil, result
-	case 505:
-		result := NewGetLatestHTTPVersionNotSupported()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
@@ -146,13 +110,24 @@ func NewGetLatestSwitchingProtocols() *GetLatestSwitchingProtocols {
 No API Key was specified or an invalid API Key was specified.
 */
 type GetLatestSwitchingProtocols struct {
+	Payload *models.Error
 }
 
 func (o *GetLatestSwitchingProtocols) Error() string {
-	return fmt.Sprintf("[GET /latest][%d] getLatestSwitchingProtocols ", 101)
+	return fmt.Sprintf("[GET /latest][%d] getLatestSwitchingProtocols  %+v", 101, o.Payload)
+}
+func (o *GetLatestSwitchingProtocols) GetPayload() *models.Error {
+	return o.Payload
 }
 
 func (o *GetLatestSwitchingProtocols) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -167,13 +142,24 @@ func NewGetLatestProcessing() *GetLatestProcessing {
 The account this API request is coming from is inactive.
 */
 type GetLatestProcessing struct {
+	Payload *models.Error
 }
 
 func (o *GetLatestProcessing) Error() string {
-	return fmt.Sprintf("[GET /latest][%d] getLatestProcessing ", 102)
+	return fmt.Sprintf("[GET /latest][%d] getLatestProcessing  %+v", 102, o.Payload)
+}
+func (o *GetLatestProcessing) GetPayload() *models.Error {
+	return o.Payload
 }
 
 func (o *GetLatestProcessing) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -188,13 +174,24 @@ func NewGetLatestCheckpoint() *GetLatestCheckpoint {
 The requested API endpoint does not exist.
 */
 type GetLatestCheckpoint struct {
+	Payload *models.Error
 }
 
 func (o *GetLatestCheckpoint) Error() string {
-	return fmt.Sprintf("[GET /latest][%d] getLatestCheckpoint ", 103)
+	return fmt.Sprintf("[GET /latest][%d] getLatestCheckpoint  %+v", 103, o.Payload)
+}
+func (o *GetLatestCheckpoint) GetPayload() *models.Error {
+	return o.Payload
 }
 
 func (o *GetLatestCheckpoint) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -209,13 +206,24 @@ func NewGetLatestStatus104() *GetLatestStatus104 {
 The maximum allowed API amount of monthly API requests has been reached.
 */
 type GetLatestStatus104 struct {
+	Payload *models.Error
 }
 
 func (o *GetLatestStatus104) Error() string {
-	return fmt.Sprintf("[GET /latest][%d] getLatestStatus104 ", 104)
+	return fmt.Sprintf("[GET /latest][%d] getLatestStatus104  %+v", 104, o.Payload)
+}
+func (o *GetLatestStatus104) GetPayload() *models.Error {
+	return o.Payload
 }
 
 func (o *GetLatestStatus104) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -230,13 +238,24 @@ func NewGetLatestStatus105() *GetLatestStatus105 {
 The current subscription plan does not support this API endpoint.
 */
 type GetLatestStatus105 struct {
+	Payload *models.Error
 }
 
 func (o *GetLatestStatus105) Error() string {
-	return fmt.Sprintf("[GET /latest][%d] getLatestStatus105 ", 105)
+	return fmt.Sprintf("[GET /latest][%d] getLatestStatus105  %+v", 105, o.Payload)
+}
+func (o *GetLatestStatus105) GetPayload() *models.Error {
+	return o.Payload
 }
 
 func (o *GetLatestStatus105) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -251,13 +270,24 @@ func NewGetLatestStatus106() *GetLatestStatus106 {
 The current request did not return any results.
 */
 type GetLatestStatus106 struct {
+	Payload *models.Error
 }
 
 func (o *GetLatestStatus106) Error() string {
-	return fmt.Sprintf("[GET /latest][%d] getLatestStatus106 ", 106)
+	return fmt.Sprintf("[GET /latest][%d] getLatestStatus106  %+v", 106, o.Payload)
+}
+func (o *GetLatestStatus106) GetPayload() *models.Error {
+	return o.Payload
 }
 
 func (o *GetLatestStatus106) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -304,13 +334,24 @@ func NewGetLatestCreated() *GetLatestCreated {
 An invalid base currency has been entered.
 */
 type GetLatestCreated struct {
+	Payload *models.Error
 }
 
 func (o *GetLatestCreated) Error() string {
-	return fmt.Sprintf("[GET /latest][%d] getLatestCreated ", 201)
+	return fmt.Sprintf("[GET /latest][%d] getLatestCreated  %+v", 201, o.Payload)
+}
+func (o *GetLatestCreated) GetPayload() *models.Error {
+	return o.Payload
 }
 
 func (o *GetLatestCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -325,34 +366,24 @@ func NewGetLatestAccepted() *GetLatestAccepted {
 One or more invalid symbols have been specified.
 */
 type GetLatestAccepted struct {
+	Payload *models.Error
 }
 
 func (o *GetLatestAccepted) Error() string {
-	return fmt.Sprintf("[GET /latest][%d] getLatestAccepted ", 202)
+	return fmt.Sprintf("[GET /latest][%d] getLatestAccepted  %+v", 202, o.Payload)
+}
+func (o *GetLatestAccepted) GetPayload() *models.Error {
+	return o.Payload
 }
 
 func (o *GetLatestAccepted) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	return nil
-}
+	o.Payload = new(models.Error)
 
-// NewGetLatestMovedPermanently creates a GetLatestMovedPermanently with default headers values
-func NewGetLatestMovedPermanently() *GetLatestMovedPermanently {
-	return &GetLatestMovedPermanently{}
-}
-
-/* GetLatestMovedPermanently describes a response with status code 301, with default header values.
-
-No date has been specified. [historical]
-*/
-type GetLatestMovedPermanently struct {
-}
-
-func (o *GetLatestMovedPermanently) Error() string {
-	return fmt.Sprintf("[GET /latest][%d] getLatestMovedPermanently ", 301)
-}
-
-func (o *GetLatestMovedPermanently) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -367,13 +398,24 @@ func NewGetLatestFound() *GetLatestFound {
 An invalid date has been specified. [historical, convert]
 */
 type GetLatestFound struct {
+	Payload *models.Error
 }
 
 func (o *GetLatestFound) Error() string {
-	return fmt.Sprintf("[GET /latest][%d] getLatestFound ", 302)
+	return fmt.Sprintf("[GET /latest][%d] getLatestFound  %+v", 302, o.Payload)
+}
+func (o *GetLatestFound) GetPayload() *models.Error {
+	return o.Payload
 }
 
 func (o *GetLatestFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -388,13 +430,24 @@ func NewGetLatestForbidden() *GetLatestForbidden {
 No or an invalid amount has been specified. [convert]
 */
 type GetLatestForbidden struct {
+	Payload *models.Error
 }
 
 func (o *GetLatestForbidden) Error() string {
-	return fmt.Sprintf("[GET /latest][%d] getLatestForbidden ", 403)
+	return fmt.Sprintf("[GET /latest][%d] getLatestForbidden  %+v", 403, o.Payload)
+}
+func (o *GetLatestForbidden) GetPayload() *models.Error {
+	return o.Payload
 }
 
 func (o *GetLatestForbidden) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	o.Payload = new(models.Error)
+
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }
@@ -409,118 +462,24 @@ func NewGetLatestNotFound() *GetLatestNotFound {
 The requested resource does not exist
 */
 type GetLatestNotFound struct {
+	Payload *models.Error
 }
 
 func (o *GetLatestNotFound) Error() string {
-	return fmt.Sprintf("[GET /latest][%d] getLatestNotFound ", 404)
+	return fmt.Sprintf("[GET /latest][%d] getLatestNotFound  %+v", 404, o.Payload)
+}
+func (o *GetLatestNotFound) GetPayload() *models.Error {
+	return o.Payload
 }
 
 func (o *GetLatestNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	return nil
-}
+	o.Payload = new(models.Error)
 
-// NewGetLatestNotImplemented creates a GetLatestNotImplemented with default headers values
-func NewGetLatestNotImplemented() *GetLatestNotImplemented {
-	return &GetLatestNotImplemented{}
-}
-
-/* GetLatestNotImplemented describes a response with status code 501, with default header values.
-
-No or an invalid timeframe has been specified. [timeseries]
-*/
-type GetLatestNotImplemented struct {
-}
-
-func (o *GetLatestNotImplemented) Error() string {
-	return fmt.Sprintf("[GET /latest][%d] getLatestNotImplemented ", 501)
-}
-
-func (o *GetLatestNotImplemented) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	return nil
-}
-
-// NewGetLatestBadGateway creates a GetLatestBadGateway with default headers values
-func NewGetLatestBadGateway() *GetLatestBadGateway {
-	return &GetLatestBadGateway{}
-}
-
-/* GetLatestBadGateway describes a response with status code 502, with default header values.
-
-No or an invalid "start_date" has been specified. [timeseries, fluctuation]
-*/
-type GetLatestBadGateway struct {
-}
-
-func (o *GetLatestBadGateway) Error() string {
-	return fmt.Sprintf("[GET /latest][%d] getLatestBadGateway ", 502)
-}
-
-func (o *GetLatestBadGateway) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	return nil
-}
-
-// NewGetLatestServiceUnavailable creates a GetLatestServiceUnavailable with default headers values
-func NewGetLatestServiceUnavailable() *GetLatestServiceUnavailable {
-	return &GetLatestServiceUnavailable{}
-}
-
-/* GetLatestServiceUnavailable describes a response with status code 503, with default header values.
-
-No or an invalid "end_date" has been specified. [timeseries, fluctuation]
-*/
-type GetLatestServiceUnavailable struct {
-}
-
-func (o *GetLatestServiceUnavailable) Error() string {
-	return fmt.Sprintf("[GET /latest][%d] getLatestServiceUnavailable ", 503)
-}
-
-func (o *GetLatestServiceUnavailable) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	return nil
-}
-
-// NewGetLatestGatewayTimeout creates a GetLatestGatewayTimeout with default headers values
-func NewGetLatestGatewayTimeout() *GetLatestGatewayTimeout {
-	return &GetLatestGatewayTimeout{}
-}
-
-/* GetLatestGatewayTimeout describes a response with status code 504, with default header values.
-
-An invalid timeframe has been specified. [timeseries, fluctuation]
-*/
-type GetLatestGatewayTimeout struct {
-}
-
-func (o *GetLatestGatewayTimeout) Error() string {
-	return fmt.Sprintf("[GET /latest][%d] getLatestGatewayTimeout ", 504)
-}
-
-func (o *GetLatestGatewayTimeout) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	return nil
-}
-
-// NewGetLatestHTTPVersionNotSupported creates a GetLatestHTTPVersionNotSupported with default headers values
-func NewGetLatestHTTPVersionNotSupported() *GetLatestHTTPVersionNotSupported {
-	return &GetLatestHTTPVersionNotSupported{}
-}
-
-/* GetLatestHTTPVersionNotSupported describes a response with status code 505, with default header values.
-
-The specified timeframe is too long, exceeding 365 days. [timeseries, fluctuation]
-*/
-type GetLatestHTTPVersionNotSupported struct {
-}
-
-func (o *GetLatestHTTPVersionNotSupported) Error() string {
-	return fmt.Sprintf("[GET /latest][%d] getLatestHttpVersionNotSupported ", 505)
-}
-
-func (o *GetLatestHTTPVersionNotSupported) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	// response payload
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+		return err
+	}
 
 	return nil
 }

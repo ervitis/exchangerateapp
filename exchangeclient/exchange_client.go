@@ -52,7 +52,7 @@ func (e *ExchangeApi) getCurrencies() error {
 	}
 
 	if !resp.GetPayload().Success {
-		return fmt.Errorf("getCurrencies: the request was not success")
+		return fmt.Errorf("getCurrencies: the request was not success: %s", resp.Error())
 	}
 
 	e.currencies = make([]string, 0)
