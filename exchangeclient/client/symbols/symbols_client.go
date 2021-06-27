@@ -49,7 +49,7 @@ func (a *Client) GetSymbols(params *GetSymbolsParams, opts ...ClientOption) (*Ge
 		PathPattern:        "/symbols",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"http", "https"},
+		Schemes:            []string{"http"},
 		Params:             params,
 		Reader:             &GetSymbolsReader{formats: a.formats},
 		Context:            params.Context,

@@ -20,14 +20,14 @@ var Default = NewHTTPClient(nil)
 const (
 	// DefaultHost is the default Host
 	// found in Meta (info) section of spec file
-	DefaultHost string = "api.fixer.io"
+	DefaultHost string = "data.fixer.io"
 	// DefaultBasePath is the default BasePath
 	// found in Meta (info) section of spec file
 	DefaultBasePath string = "/api/"
 )
 
 // DefaultSchemes are the default schemes found in Meta (info) section of spec file
-var DefaultSchemes = []string{"http", "https"}
+var DefaultSchemes = []string{"http"}
 
 // NewHTTPClient creates a new fixer io HTTP client.
 func NewHTTPClient(formats strfmt.Registry) *FixerIo {

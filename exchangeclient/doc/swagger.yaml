@@ -3,11 +3,10 @@ info:
   title: Fixer.io
   description: Foreign Exchange Rates and Currency Conversion API fixer.io
   version: '1.0'
-host: 'api.fixer.io'
+host: 'data.fixer.io'
 basePath: '/api/'
 schemes:
   - http
-  - https
 produces:
   - application/json
 paths:

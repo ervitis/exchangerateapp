@@ -1,12 +1,14 @@
 package exchangeclient
 
 import (
+	"context"
 	"fmt"
 	"github.com/ervitis/exchangerateapp/exchangeclient/client"
 	"github.com/ervitis/exchangerateapp/exchangeclient/client/rates"
 	"github.com/ervitis/exchangerateapp/exchangeclient/client/symbols"
 	"github.com/go-openapi/strfmt"
 	"os"
+	"time"
 )
 
 type (
@@ -19,15 +21,9 @@ type (
 )
 
 func NewClient() (*ExchangeApi, error) {
-	s := os.Getenv("API_URL")
-	if s == "" {
-		return nil, fmt.Errorf("API_URL env variable not set")
-	}
-
 	c := &ExchangeApi{}
-	c.URL = s
 
-	s = os.Getenv("API_KEY")
+	s := os.Getenv("API_KEY")
 	if s == "" {
 		return nil, fmt.Errorf("API_KEY env variable not set")
 	}
@@ -47,7 +43,10 @@ func (e *ExchangeApi) getCurrencies() error {
 		return nil
 	}
 
-	resp, err := e.client.Symbols.GetSymbols(&symbols.GetSymbolsParams{AccessKey: e.APIKEY})
+	ctx, cancel := context.WithTimeout(context.Background(), 15 * time.Second)
+	defer cancel()
+
+	resp, err := e.client.Symbols.GetSymbols(&symbols.GetSymbolsParams{AccessKey: e.APIKEY, Context: ctx})
 	if err != nil {
 		return fmt.Errorf("getCurrencies: error retrieving symbols from api: %w", err)
 	}
@@ -97,7 +96,10 @@ func (e *ExchangeApi) ConvertCurrency(from string, to []string) (ConvertedCurren
 		return nil, fmt.Errorf("ConvertCurrency: error validating: %w", err)
 	}
 
-	okResponse, _, _, err := e.client.Rates.GetLatest(&rates.GetLatestParams{AccessKey: e.APIKEY, Base: &from, Symbols: to})
+	ctx, cancel := context.WithTimeout(context.Background(), 15 * time.Second)
+	defer cancel()
+
+	okResponse, _, _, err := e.client.Rates.GetLatest(&rates.GetLatestParams{AccessKey: e.APIKEY, Base: &from, Symbols: to, Context: ctx})
 	if err != nil {
 		return nil, fmt.Errorf("ConvertCurrency: error GetLatest: %w", err)
 	}
