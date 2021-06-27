@@ -22,5 +22,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: exchangerateapp:latest
+          tags: ervitis/exchangerateapp:latest
           build-args: API_KEY=${{ secrets.API_TOKEN }}
