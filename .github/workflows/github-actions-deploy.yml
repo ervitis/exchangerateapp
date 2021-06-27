@@ -1,14 +1,17 @@
 name: Deploy Action
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - 'master'
 jobs:
   docker-push:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
 
       - name: Login to DockerHub
         if: GitHub.event_name != 'pull_request'
