@@ -95,7 +95,7 @@ func main() {
 	mux.HandleFunc("/rate/quantity/", h.ratingConverterHandler())
 
 	server := &http.Server{
-		Addr:    ":8080",
+		Addr:    ":8181",
 		Handler: mux,
 		BaseContext: func(_ net.Listener) context.Context {
 			return ctx
@@ -103,7 +103,7 @@ func main() {
 	}
 
 	go func(server *http.Server) {
-		log.Println("Listening at http://localhost:8080")
+		log.Println("Listening at http://localhost:8181")
 		log.Fatal(server.ListenAndServe())
 	}(server)
 

@@ -16,6 +16,6 @@ COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 ARG API_KEY
 ENV API_KEY ${API_KEY}
 
-EXPOSE 8080
+EXPOSE 8181
 
 ENTRYPOINT ["/app/exchangerateapp"]
