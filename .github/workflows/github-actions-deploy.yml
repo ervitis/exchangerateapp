@@ -10,9 +10,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: debug
-        run: echo "token is ${{ secrets.API_TOKEN }}"
-
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
